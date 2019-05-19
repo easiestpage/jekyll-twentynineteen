@@ -1,0 +1,13 @@
+<section id="recent-posts-2" class="widget widget_recent_entries">
+    {% if site.posts.size %}
+        <h2 class="widget-title">Recent Posts</h2>
+        <ul>
+            {% for post in site.posts limit:5 %}
+                <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+
+
+

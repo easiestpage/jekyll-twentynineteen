@@ -1,0 +1,4 @@
+_site/
+_posts/*-test.html
+.idea/
+Gemfile.lock

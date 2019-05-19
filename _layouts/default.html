@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% assign timestamp = site.time | date: '%s' %}<link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: timestamp | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/print.css?v=" | append: timestamp | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: timestamp | relative_url }}">
+    {% seo %}
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ "/feed.xml" | absolute_url }}">
+</head>
+<body class="post-template-default single single-post single-format-standard wp-embed-responsive singular image-filters-enabled">
+<div id="page" class="site">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+    <header id="masthead" class="site-header">
+
+        <div class="site-branding-container">
+            <div class="site-branding">
+                <p class="site-title"><a href="{{ "/" | relative_url }}" rel="home">{{ site.title }}</a></p>
+
+                {% if site.tagline %}
+                    <p class="site-description">{{ site.tagline }}</p>
+                {% endif %}
+
+                {% include nav_menu.html %}
+            </div><!-- .site-branding -->
+        </div><!-- .site-branding-container -->
+    </header><!-- #masthead -->
+
+    <div id="content" class="site-content">
+        <section id="primary" class="content-area">
+            <main id="main" class="site-main">
+
+                {% if page.is_index %}
+                    {{ content }}
+                {% elsif content %}
+                    {% assign post = page %}
+                    {% include post.html %}
+                    <div id="comments" class="comments-area">
+                        {% include disqus.html %}
+                    </div><!-- #comments -->
+                {% endif %}
+            </main><!-- #main -->
+        </section><!-- #primary -->
+
+        <footer id="colophon" class="site-footer">
+            <aside class="widget-area" role="complementary" aria-label="Footer">
+                <div class="widget-column footer-widget-1">
+                    {% include search.html %}
+                    {% include recent.html %}
+                </div>
+            </aside><!-- .widget-area -->
+        </footer>
+    </div><!-- #content -->
+
+</div><!-- #page -->
+
+{% include google_analytics.html %}
+
+<script src="{{ "/assets/js/priority-menu.js?v=" | append: timestamp | relative_url }}"></script>
+<script src="{{ "/assets/js/touch-keyboard-navigation.js?v=" | append: timestamp | relative_url }}"></script>
+<script src="{{ "/assets/js/script.js?v=" | append: timestamp | relative_url }}"></script>
+</body>
+</html>

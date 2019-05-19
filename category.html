@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<header class="page-header">
+    <h1 class="page-title">Category Archives: <span class="page-description"></span></h1>
+</header>
+<ul id="results-list"></ul>
+
+{% assign timestamp = site.time | date: '%s' %}
+<script src="{{ "/assets/js/jquery.min.js?v=" | append: timestamp | relative_url }}"></script>
+<script>
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    var postData = '{{ "/search.json?v=" | append: timestamp | relative_url }}';
+    var category = getUrlParameter('cat');
+    $('.page-description').text(category);
+    $.getJSON(postData, function(data) {
+        var posts = data;
+        $.each(data, function( index, value ) {
+           if (typeof value.category !== "undefined") {
+               var postCategories = value.category.split(', ');
+               if (postCategories.indexOf(category) !== -1) {
+                   $('#results-list').append('<li><a href="' + value.url + '">' + value.title + '</a></li>');
+               }
+           }
+        });
+    });
+</script>

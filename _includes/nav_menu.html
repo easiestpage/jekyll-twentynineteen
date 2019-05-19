@@ -1,0 +1,45 @@
+<nav id="site-navigation" class="main-navigation" aria-label="Top Menu">
+    <div class="menu-main-container">
+        <ul id="menu-main" class="main-menu">
+            {% for link in site.navigation %}
+                {% assign slice = link.url | slice: 0, 4 %}
+                {% if slice == 'http' %}
+                    {% assign link_url = link.url %}
+                {% else %}
+                    {% assign link_url = link.url | relative_url %}
+                {% endif %}
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ link_url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="main-menu-more">
+        <ul class="main-menu">
+            <li class="menu-item menu-item-has-children">
+                <button class="submenu-expand main-menu-more-toggle is-empty" tabindex="-1" aria-label="More"
+                        aria-haspopup="true" aria-expanded="false"><span class="screen-reader-text">More</span>
+                    <svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g fill="none" fill-rule="evenodd">
+                            <path d="M0 0h24v24H0z"></path>
+                            <path fill="currentColor" fill-rule="nonzero"
+                                  d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zM6 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                        </g>
+                    </svg>
+                </button>
+                <ul class="sub-menu hidden-links">
+                    <li id="menu-item--1" class="mobile-parent-nav-menu-item menu-item--1">
+                        <button class="menu-item-link-return">
+                            <svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false"
+                                 viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </svg>
+                            Back
+                        </button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
