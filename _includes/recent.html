@@ -1,5 +1,5 @@
 <section id="recent-posts-2" class="widget widget_recent_entries">
-    {% if site.posts.size %}
+    {% if site.posts.size > 0 %}
         <h2 class="widget-title">Recent Posts</h2>
         <ul>
             {% for post in site.posts limit:5 %}
